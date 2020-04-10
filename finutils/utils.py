@@ -1,6 +1,5 @@
 import pathlib
 import json
-from pick import pick
 import numpy as np
 from datetime import datetime
 import pandas as pd
