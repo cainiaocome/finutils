@@ -73,6 +73,7 @@ class RqTick(RqData):
         for trading_date,g in df.groupby('trading_date'):
             g = g.copy()
             g['volume_in_tick'] = g['volume'].diff()
+            g['dollar_in_tick'] = g['total_turnover'].diff()
             g.dropna(inplace=True)
             g_l.append(g)
         self.df = pd.concat(g_l)
