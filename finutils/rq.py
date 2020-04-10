@@ -25,10 +25,6 @@ import numpy as np
 import pandas as pd
 from datetime import datetime, time, timedelta
 
-from vnpy.trader.constant import Exchange, Interval
-from vnpy.trader.object import TickData, BarData
-from vnpy.trader.utility import BarGenerator
-
 
 class RqData:
     def __init__(self, path):
@@ -36,6 +32,17 @@ class RqData:
 
         # now, read csv
         self.df = pd.read_csv(self.path, parse_dates=['datetime'], header=0, compression='gzip')
+
+    @staticmethod
+    def sample_without_time_gap(df, ticks, max_time_gap):
+        while True:
+            s = random.randint(0,len(df)-ticks)
+            tmpdf = df.iloc[s:s+ticks]
+            tds = tmpdf.datetime.diff()
+            if tds.max()>max_time_gap:
+                continue
+            else:
+                return tmpdf
 
     @staticmethod
     def read_dominant_contracts_and_contracts_information(result_pkl_path):
@@ -74,8 +81,10 @@ class RqTick(RqData):
         self.df.reset_index(drop=True, inplace=True)
     
     def to_vnpy_tick(self):
-
         raise Exception('not implemented yet')
+        from vnpy.trader.constant import Exchange, Interval
+        from vnpy.trader.object import TickData, BarData
+        from vnpy.trader.utility import BarGenerator
 
         mapper = {
             'bid_price1': 'bid_price_1',

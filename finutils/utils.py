@@ -5,6 +5,7 @@ import numpy as np
 from datetime import datetime
 import pandas as pd
 
+
 def format_datetime_to_date(dt):
     return dt.strftime('%Y%m%d')
 
@@ -21,4 +22,11 @@ def group_ts_by_gap(ts, gap):
     x.iloc[0] = 0
     x = x.cumsum()
     return x
+
+
+def html_df(df):
+	from IPython.display import HTML, display
+    display(HTML(df.to_html()))
+def html_df_near(df, i):
+    html_df(df.iloc[i-10:i+10])
 
