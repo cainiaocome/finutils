@@ -25,7 +25,7 @@ def group_ts_by_gap(ts, gap):
 
 
 def html_df(df):
-	from IPython.display import HTML, display
+    from IPython.display import HTML, display
     display(HTML(df.to_html()))
 def html_df_near(df, i):
     html_df(df.iloc[i-10:i+10])
