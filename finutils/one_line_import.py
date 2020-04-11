@@ -1,22 +1,12 @@
-#!/usr/bin/env python
+try:
+    import finutils
+except:
+    !pip install --upgrade git+https://github.com/cainiaocome/finutils
+try:
+    import mlfinlab
+except:
+    !pip install --upgrade mlfinlab
 
-import os
-import shlex
-import subprocess
-
-
-# execute some commands first
-cmds = [
-    'pip install --upgrade git+https://github.com/cainiaocome/finutils',
-    'pip install --upgrade mlfinlab',
-    ]
-cmds = [shlex.split(cmd) for cmd in cmds]
-for cmd in cmds:
-    completedprocess = subprocess.run(cmd, check=True)
-
-
-# now the python code
-python_code = '''
 import os
 import sys
 import pathlib
@@ -57,9 +47,3 @@ else:
 
 
 market_open_and_close_time_range = get_market_open_and_close_time_range()
-'''
-exec(python_code, globals(), locals())
-
-
-print('the following code is executed automatically')
-print(python_code)
