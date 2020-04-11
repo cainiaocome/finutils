@@ -4,11 +4,18 @@ import os
 import shlex
 import subprocess
 
-# install finutils
-install_cmd = 'pip install --upgrade git+https://github.com/cainiaocome/finutils'
-install_cmd = shlex.split(install_cmd)
-completedprocess = subprocess.run(install_cmd, check=True)
 
+# execute some commands first
+cmds = [
+    'pip install --upgrade git+https://github.com/cainiaocome/finutils',
+    'pip install --upgrade mlfinlab',
+    ]
+cmds = [shlex.split(cmd) for cmd in cmds]
+for cmd in cmds:
+    completedprocess = subprocess.run(cmd, check=True)
+
+
+# now the python code
 python_code = '''
 import os
 import sys
@@ -49,6 +56,7 @@ InteractiveShell.ast_node_interactivity = "all"
 
 '''
 exec(python_code, globals(), locals())
+
 
 print('the following code is executed automatically')
 print(python_code)
