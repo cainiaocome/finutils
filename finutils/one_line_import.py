@@ -1,3 +1,5 @@
+%matplotlib inline
+
 !pip install --upgrade git+https://github.com/cainiaocome/finutils
 try:
     import mlfinlab
