@@ -1,7 +1,4 @@
-try:
-    import finutils
-except:
-    !pip install --upgrade git+https://github.com/cainiaocome/finutils
+!pip install --upgrade git+https://github.com/cainiaocome/finutils
 try:
     import mlfinlab
 except:
