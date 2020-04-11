@@ -67,7 +67,8 @@ class RqTick(RqData):
         super().__init__(path)
         df = self.df
 
-        # spread
+        # spread, 注意ricequant的数据里面，涨停跌停的时候价格不是nan而是0
+        # 这会导致这里计算的spread很大或者很小，需要用spread的时候请注意
         df['spread'] = df['a1'] - df['b1']
 
         g_l = []
@@ -80,6 +81,9 @@ class RqTick(RqData):
         self.df = pd.concat(g_l)
         drop_columns = 'a2,a3,a4,a5,b2,b3,b4,b5,a2_v,a3_v,a4_v,a5_v,b2_v,b3_v,b4_v,b5_v,change_rate'.split(',')
         self.df.drop(columns=drop_columns, inplace=True)
+
+        # ricequant的数据里有重复数据，这里根据datetime删除
+        self.df.drop_duplicate(subset=['datetime'], inplace=True)
         self.df.reset_index(drop=True, inplace=True)
     
     def to_vnpy_tick(self):
