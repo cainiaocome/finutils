@@ -27,7 +27,7 @@ warnings.filterwarnings('ignore')
 
 
 from finutils.rq import RqData, RqTick
-from finutils.utils import html_df, html_df_near, group_ts_by_gap
+from finutils.utils import html_df, html_df_near, group_ts_by_gap, check_for_stationarity
 from finutils.time_range import TimeRange, MultiTimeRange, get_market_open_and_close_time_range
 
 
