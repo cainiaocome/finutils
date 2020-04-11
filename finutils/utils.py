@@ -29,3 +29,10 @@ def html_df(df):
 def html_df_near(df, i):
     html_df(df.iloc[i-10:i+10])
 
+
+def check_for_stationarity(X, cutoff=0.01):
+    # H_0 in adfuller is unit root exists (non-stationary)
+    # We must observe significant p-value to convince ourselves that the series is stationary
+    from statsmodels.tsa.stattools import adfuller
+    pvalue = adfuller(X)[1]
+    return pvalue < cutoff, pvalue
