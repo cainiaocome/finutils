@@ -41,3 +41,16 @@ class MultiTimeRange:
         self.time_range_list.append(time_range)
 
 
+def get_market_open_and_close_time_range(td=timedelta(minutes=3)):
+	return MultiTimeRange(
+		# morning
+		TimeRange.from_time_and_timedelta(time(9, 0), td),
+		TimeRange.from_time_and_timedelta(time(11, 30), td),
+		# afternoon
+		TimeRange.from_time_and_timedelta(time(13, 30), td),
+		TimeRange.from_time_and_timedelta(time(15, 0),td),
+		# night trade time range  
+		# only for au now
+		TimeRange.from_time_and_timedelta(time(21, 0), td),
+		TimeRange.from_time_and_timedelta(time(2, 30), td),
+	)
