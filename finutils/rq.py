@@ -83,7 +83,7 @@ class RqTick(RqData):
         self.df.drop(columns=drop_columns, inplace=True)
 
         # ricequant的数据里有重复数据，这里根据datetime删除
-        self.df.drop_duplicate(subset=['datetime'], inplace=True)
+        self.df.drop_duplicates(subset=['datetime'], inplace=True)
         self.df.reset_index(drop=True, inplace=True)
     
     def to_vnpy_tick(self):
