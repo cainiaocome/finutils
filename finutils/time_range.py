@@ -45,7 +45,12 @@ class MultiTimeRange:
             x = list(x)
         if isinstance(x, Iterable):
             return [include_this(i) for i in x]
-        return include_this(x)
+        else:
+            raise Exception('include these only support Iterable')
+
+    def not_include_these(self, x):
+        r = self.include_these(x)
+        return [(not i) for i in r]
             
     def __repr__(self):
         s = 'MultiTimeRange:\n'
