@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import pandas as pd
 from datetime import datetime, time, timedelta
 from collections import Iterable
 
@@ -10,6 +11,10 @@ class TimeRange:
 
     def __contains__(self, x:time):
         def contains(x):
+            if isinstance(x, datetime):
+                x = x.time()
+            if isinstance(x, pd.Timestamp):
+                x = x.time()
             return x>=self.start and x<=self.end
         if isinstance(x, Iterable):
             return [contains(i) for i in x]
