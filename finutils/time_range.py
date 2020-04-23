@@ -10,15 +10,7 @@ class TimeRange:
         self.end = end
 
     def __contains__(self, x:time):
-        def contains(x):
-            if isinstance(x, datetime):
-                x = x.time()
-            if isinstance(x, pd.Timestamp):
-                x = x.time()
-            return x>=self.start and x<=self.end
-        if isinstance(x, Iterable):
-            return [contains(i) for i in x]
-        return contains(x)
+        return x>=self.start and x<=self.end
 
     def __repr__(self):
         return f'TimeRange {self.start} -> {self.end}'
@@ -36,14 +28,24 @@ class MultiTimeRange:
         self.time_range_list = args
 
     def __contains__(self, x):
-        def contains(x):
-            for time_range in self.time_range_list:
-                if x in time_range:
-                    return True
-            return False
+        '''
+        magic method __contains__ can only return True/False, or else will be converted by python automatically
+        '''
+        for time_range in self.time_range_list:
+            if x in time_range:
+                return True
+        return False
+
+    def include_these(self, x):
+        def include_this(x):
+            if type(x) in [datetime, pd.Timestamp]:
+                x = x.time()
+            return (x in self)
+        if isinstance(x, pd.DatetimeIndex):
+            x = list(x)
         if isinstance(x, Iterable):
-            return [contains(i) for i in x]
-        return contains(x)
+            return [include_this(i) for i in x]
+        return include_this(x)
             
     def __repr__(self):
         s = 'MultiTimeRange:\n'
