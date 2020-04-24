@@ -11,7 +11,7 @@ def price_volume_plot(df):
     fig, ax = plt.subplots(nrows=2, sharex=True, figsize=(15,8))
 
     ax[0].plot(data.index, data.price)
-    ax[1].bar(data.index, data.volume, width=1/(5*len(data.index)))
+    ax[1].bar(data.index, data.volume, width=1/(20*len(data.index)))
 
     xfmt = mpl.dates.DateFormatter('%H:%M')
     ax[1].xaxis.set_major_locator(mpl.dates.HourLocator(interval=3))
