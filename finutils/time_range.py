@@ -75,3 +75,23 @@ def get_market_open_and_close_time_range(td=timedelta(minutes=3)):
 		TimeRange.from_time_and_timedelta(time(21, 0), td),
 		TimeRange.from_time_and_timedelta(time(2, 30), td),
 	)
+
+def get_market_open_time_range():
+	return MultiTimeRange(
+        # morning
+		TimeRange(
+            start = time(9, 0), 
+            end = time(11, 30)
+        ),
+		# afternoon
+		TimeRange(
+            start = time(13, 30),
+		    end = time(15, 0),
+        ),
+		# night trade time range  
+		# only for au now
+		TimeRange(
+            start = time(21, 0),
+		    end = time(2, 30),
+        )
+	)
