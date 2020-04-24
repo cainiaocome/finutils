@@ -25,8 +25,8 @@ def price_volume_plot(df):
     fig.autofmt_xdate()
     plt.show()
 
-from thinkstats2 import thinkstats2, thinkplot
 def plot_series_cdf(s, *args, **kwargs):
+    from thinkstats2 import thinkstats2, thinkplot
     cdf = thinkstats2.Cdf(s)
     _  = thinkplot.Cdf(cdf)
     _ = thinkplot.Config(*args, **kwargs)
