@@ -30,3 +30,4 @@ def plot_series_cdf(s, *args, **kwargs):
     cdf = thinkstats2.Cdf(s)
     _  = thinkplot.Cdf(cdf)
     _ = thinkplot.Config(*args, **kwargs)
+    _ = thinkplot.Show()
