@@ -36,3 +36,10 @@ def check_for_stationarity(X, cutoff=0.01):
     from statsmodels.tsa.stattools import adfuller
     pvalue = adfuller(X)[1]
     return pvalue < cutoff, pvalue
+
+
+def get_df_near_timestamp(df, timestamp, delta=pd.to_timedelta('30 seconds')):
+    start = timestamp - delta
+    end = timestamp + delta
+    return df[(df.index>start)&(df.index<end)]
+
