@@ -27,9 +27,9 @@ warnings.filterwarnings('ignore')
 
 
 from finutils.rq import RqData, RqTick
-from finutils.utils import html_df, html_df_near, group_ts_by_gap, check_for_stationarity \
+from finutils.utils import html_df, html_df_near, group_ts_by_gap, check_for_stationarity, \
     get_df_near_timestamp 
-from finutils.time_range import TimeRange, MultiTimeRange, get_market_open_and_close_time_range \
+from finutils.time_range import TimeRange, MultiTimeRange, get_market_open_and_close_time_range, \
     get_market_open_time_range
 from finutils.plot import price_volume_plot
 
