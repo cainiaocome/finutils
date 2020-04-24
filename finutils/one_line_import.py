@@ -49,3 +49,4 @@ else:
 
 
 market_open_and_close_time_range = get_market_open_and_close_time_range()
+market_open_time_range = get_market_open_time_range()
