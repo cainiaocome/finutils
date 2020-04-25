@@ -92,6 +92,10 @@ def get_market_open_time_range():
 		# only for au now
 		TimeRange(
             start = time(21, 0),
+		    end = time(23, 59, 59, 999),
+        ),
+		TimeRange(
+            start = time(0, 0),
 		    end = time(2, 30),
         )
 	)
