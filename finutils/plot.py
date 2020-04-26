@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-def price_volume_plot(df):
+def price_volume_plot(df, price_col_name='price', volume_col_name='volume'):
     import matplotlib as mpl
     import matplotlib.pyplot as plt
 
@@ -10,8 +10,8 @@ def price_volume_plot(df):
     
     fig, ax = plt.subplots(nrows=2, sharex=True, figsize=(15,8))
 
-    ax[0].plot(data.index, data.price)
-    ax[1].bar(data.index, data.volume, width=1/(20*len(data.index)))
+    ax[0].plot(data.index, data[price_col_name])
+    ax[1].bar(data.index, data[volume_col_name], width=1/(20*len(data.index)))
 
     xfmt = mpl.dates.DateFormatter('%H:%M')
     ax[1].xaxis.set_major_locator(mpl.dates.HourLocator(interval=3))

@@ -36,6 +36,9 @@ class RqData:
 
     @staticmethod
     def sample_without_time_gap(df, ticks, max_time_gap):
+        '''
+        todo: 这里固定使用了datetime这个列，感觉把时间作为index可能还会好一些
+        '''
         while True:
             s = random.randint(0,len(df)-ticks)
             tmpdf = df.iloc[s:s+ticks]
@@ -69,6 +72,7 @@ class RqTick(RqData):
 
         # spread, 注意ricequant的数据里面，涨停跌停的时候价格不是nan而是0
         # 这会导致这里计算的spread很大或者很小，需要用spread的时候请注意
+        # 也许采用另外的算法或者一个标记更好
         df['spread'] = df['a1'] - df['b1']
 
         g_l = []
