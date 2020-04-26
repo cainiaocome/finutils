@@ -2,16 +2,18 @@
 
 '''
 mlfinlab的一些辅助函数
+todo
 '''
 
 def copy_rqtick_df(rqtick):
     df = rqtick.df.copy()
     df.set_index('datetime', drop=True, inplace=True)
     df['datetime'] = list(df.index)
-    # 删除交易时间以外的数据，ricequant的数据质量并不是特别好
+    # 删除交易时间以外的数据，ricequant的数据质量并不好
     # 又有重复数据又没有清理这些异常数据，还好意思收费
     df = df[market_open_time_range.include_these(df.datetime)]
-    no_touch_df = df
+    no_touch_df = df  # do not touch this df
+    return no_touch_df
 
 def trades_generator(df, method, plot=False):
     if method=='sample':
